@@ -128,7 +128,10 @@ namespace zadanie3
 
         private void btnXML_Click(object sender, EventArgs e)
         {
-
+            using (var addForm = new xmlclass())
+            {
+                addForm.ShowDialog();
+            }
         }
     }
 }
