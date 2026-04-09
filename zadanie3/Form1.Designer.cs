@@ -33,6 +33,7 @@
             btnZapisCSV = new Button();
             btnOdczytCSV = new Button();
             btnUsun = new Button();
+            btnXML = new Button();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
@@ -57,7 +58,7 @@
             // 
             // btnZapisCSV
             // 
-            btnZapisCSV.Location = new Point(233, 340);
+            btnZapisCSV.Location = new Point(372, 340);
             btnZapisCSV.Name = "btnZapisCSV";
             btnZapisCSV.Size = new Size(176, 43);
             btnZapisCSV.TabIndex = 2;
@@ -85,11 +86,22 @@
             btnUsun.UseVisualStyleBackColor = true;
             btnUsun.Click += btnUsun_Click;
             // 
+            // btnXML
+            // 
+            btnXML.Location = new Point(12, 340);
+            btnXML.Name = "btnXML";
+            btnXML.Size = new Size(167, 23);
+            btnXML.TabIndex = 5;
+            btnXML.Text = "Serializuj do pliku xml";
+            btnXML.UseVisualStyleBackColor = true;
+            btnXML.Click += btnXML_Click;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(btnXML);
             Controls.Add(btnUsun);
             Controls.Add(btnOdczytCSV);
             Controls.Add(btnZapisCSV);
@@ -108,5 +120,6 @@
         private Button btnZapisCSV;
         private Button btnOdczytCSV;
         private Button btnUsun;
+        private Button btnXML;
     }
 }

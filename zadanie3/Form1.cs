@@ -125,5 +125,10 @@ namespace zadanie3
                 nextID = 1;
             }
         }
+
+        private void btnXML_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
