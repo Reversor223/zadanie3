@@ -1,8 +1,10 @@
 using System;
 using System.Data;
+using System.Drawing.Text;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
+using System.Xml.Serialization;
 
 
 namespace zadanie3
@@ -11,6 +13,7 @@ namespace zadanie3
     {
         private BindingSource bindingSource = new BindingSource();
         private int nextID = 1;
+        
         public Form1()
         {
             InitializeComponent();
@@ -128,10 +131,66 @@ namespace zadanie3
 
         private void btnXML_Click(object sender, EventArgs e)
         {
-            using (var addForm = new xmlclass())
+            using (SaveFileDialog saveFileDialog = new SaveFileDialog())
             {
-                addForm.ShowDialog();
+                saveFileDialog.Filter = "Pliki XML (*.xml)|*.xml|Wszystkie pliki (*.*)|*.*";
+                saveFileDialog.Title = "Wybierz lokalizacjê zapisu dla pliku XML";
+                if (saveFileDialog.ShowDialog() == DialogResult.OK && !string.IsNullOrEmpty(saveFileDialog.FileName))
+                {
+                    var list = new List<Person>();
+                    DataTable dt = (DataTable)dataGridView1.DataSource;
+                    foreach (DataRow r in dt.Rows)
+                    {
+
+                    }
+                }
             }
+
+
         }
+       
+           
+          
+            public void SerializeToXML(string fileName)
+            {
+                XmlSerializer serializer = new XmlSerializer(typeof(Person));
+                using (TextWriter writer = new StreamWriter(fileName))
+                {
+                    serializer.Serialize(writer, this);
+                }
+                Console.WriteLine("Obiekt zostal zserializowany do pliku XML");
+            }
+
+            public static Person DeserializeFromXML(string fileName)
+            {
+                XmlSerializer serializer = new XmlSerializer(typeof(Person));
+                using (TextReader reader = new StreamReader(fileName))
+                {
+                    Person person = (Person)serializer.Deserialize(reader);
+                    Console.WriteLine("Obiekt zostal odczytany z pliku XML.");
+                    return person;
+                }
+            }
+            public void DisplayInfo()
+            {
+                Console.WriteLine("Imie: " + Imie);
+                Console.WriteLine("Nazwisko: " + Nazwisko);
+                Console.WriteLine("Wiek: " + Wiek);
+            }
+            /* public static void Main(string[] args)
+             {
+                 Person person1 = new Person("Jan", "Kowalski", 30);
+                 person1.SerializeToXML("person.xml");
+                 Person person2 = Person.DeserializeFromXML("person.xml");
+
+                 if (person2 == null)
+                 {
+                     person2.DisplayInfo();
+                 }
+             }*/
+        }
+    
     }
-}
+
+    
+
